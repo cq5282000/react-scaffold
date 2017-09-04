@@ -19,6 +19,7 @@
       }
     ],
     "arrow-body-style": ["off"],
+    "class-methods-use-this":["off"],
     "arrow-parens": ["error", "always"],
     "max-len": ["off"],
     "max-lines": ["off"],
