@@ -54,6 +54,7 @@ const webpackConfig = {
             loaders: ['babel-loader'],
             // customize as needed, see Configuration below
             // threadPool: happyThreadPool
+            // loaders: ['babel?presets[]=es2015'],
         }),
     ],
 };
