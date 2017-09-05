@@ -58,7 +58,13 @@
     "react/no-did-mount-set-state": ["off"],
     "react/no-multi-comp": ["off"],
     "react/no-unescaped-entities": ["off"],
-    "react/prefer-stateless-function": ["off"]
+    "react/prefer-stateless-function": ["off"],
+    "jsx-a11y/img-uses-alt": "off",
+    "jsx-a11y/label-uses-for": "off",
+    "jsx-a11y/mouse-events-map-to-key-events": "off",
+    "jsx-a11y/href-no-hash": "off",
+    "jsx-a11y/redundant-alt": "off",
+    "jsx-a11y/valid-aria-role": "off"
   },
   "env": {
     "browser": true

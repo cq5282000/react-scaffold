@@ -15,7 +15,7 @@ export default class App extends PureComponent {
 
     render() {
         return (
-            <div onClick={this.onClick}><h1>123a</h1></div>
+            <div onClick={this.onClick}><h1>12asda</h1><h1>123</h1></div>
         );
     }
 }

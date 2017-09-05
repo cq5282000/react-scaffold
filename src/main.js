@@ -2,11 +2,11 @@
  * Created by chenqu on 2017/9/4.
  */
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 
 import App from './app';
 
-ReactDOM.render(
-    <App/>,
+render(
+    <div><div><h1>aklsjdsakasjaks</h1></div></div>,
     document.getElementById('app'),
 );
