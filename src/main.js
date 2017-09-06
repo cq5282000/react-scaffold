@@ -7,6 +7,6 @@ import { render } from 'react-dom';
 import App from './app';
 
 render(
-    <div><div><h1>aklsjdsakasjaks</h1></div></div>,
+    <App/>,
     document.getElementById('app'),
 );

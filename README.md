@@ -51,4 +51,8 @@ $ require('babel-register')();
 大家注意这里的使用方式require后加了一个（），用公司大佬的话说就是函数是一等公民，其实不加也可以用啦，我也不知道为什么要这样，就当作约定俗
 成吧，哈哈哈哈
 
-- babel-polyfill babel默认只转换心得javascript语法，而不转换新的API，例如Promise，以及一些定义在全局对象上的语法，
+- babel-polyfill babel默认只转换心得javascript语法，而不转换新的API，例如Promise，以及一些定义在全局对象上的语法，安装指令
+
+```bash
+$ yarn add babel-polyfill --save-de
+```

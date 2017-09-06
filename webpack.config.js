@@ -6,7 +6,7 @@ const path = require('path');
 // const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const CleanWebpackPlugin = require('clean-webpack-plugin');
-// const HappyPack = require('happypack');
+const HappyPack = require('happypack');
 
 const SRC = path.join(__dirname, 'src');
 
@@ -37,6 +37,11 @@ const webpackConfig = {
                 ],
                 use: 'eslint-loader',
             },
+            // {
+            //     test: /\.js$/,
+            //     include: path.resolve(__dirname, 'src'),
+            //     use: ['happypack/loader'],
+            // },
         ],
     },
     plugins: [
