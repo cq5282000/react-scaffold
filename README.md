@@ -164,5 +164,21 @@ eval-cheap-module-source-map，打击根据个人偏好了。
 
 - sourceMap会增加许多额外的开销，尤其好费时间，尽量避免在工程中引入source-map
 
-- 
+- eslint-loader 如果工程中引入了eslint规则，
+
+## 待优化的 
+
+- Minimal Entry Chunk
+
+- Incremental Builds
+
+- Production
+
+- Multiple Compilations
+
+- Specific Tooling Issues
+
+- Worker Pool
+
+- DllPlugin
 
