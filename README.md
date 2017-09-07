@@ -183,3 +183,17 @@ eval-cheap-module-source-map，打击根据个人偏好了。
 - DllPlugin
 
 以上待优化的项目目前对我的变加不加对我的项目没有太大影响，所以想不做优化，后期项目慢了会考虑下引入去做优化，
+
+## BUG-fixed   2017年9月7号
+
+- output.publishPath ：输出解析目录的文件，官方文档给出的是一个这样的回答，我仔细揣摩了好久，他跟path的区别，path可能只是打包后输出文件
+的目标路径，但真正运行是加载的应该是publishPath目录下的东西，个人实践理解，不知道对不对。
+
+- devServer.contentBase 告诉服务器从哪里提供内容，只有在你想要提供静态文件时候才需要，这句话是官方原话，没太听懂，我测试下来，感觉没太大
+用，配不配没什么影响，
+
+- devServer.publicPath - 此路径下的打包文件可在浏览器中访问，假设服务器运行在 http://localhost:8080 并且 output.filename 被设置为
+ bundle.js。默认 publicPath 是 "/"，所以你的包(bundle)可以通过 http://localhost:8080/bundle.js 访问，这是官方文档原话，
+ 
+- devServer.publicPath和output.publishPath必须要一样，切记切记，不然你HtmlWebpackPlugin打包的东西是加载不到的。
+

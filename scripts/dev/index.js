@@ -14,13 +14,11 @@ const SRC = path.join(process.cwd(), 'src');
 // const MOCK_SERVER = path.join(process.cwd(), 'mock-server');
 
 const devServerOptions = {
-    contentBase: [
-        SRC,
-        // MOCK_SERVER,
-    ],
+    contentBase: false,
     hot: true,
     historyApiFallback: true,
     stats: 'verbose',
+    publicPath: '/',
 };
 
 const server = new WebpackDevServer(compiler, devServerOptions);
@@ -29,7 +27,7 @@ let opened = false;
 const openBrowser = () => {
     const address = server.listeningApp.address();
     const url = `http://${address.address}:${address.port}`;
-    open(`${url}/index.html`);
+    open(`${url}/entry/index.html`);
 };
 
 compiler.plugin('done', () => {
