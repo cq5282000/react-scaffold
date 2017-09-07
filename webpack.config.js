@@ -58,7 +58,7 @@ const webpackConfig = {
         new HtmlWebpackPlugin({ // 自动绑定bundle文件到模版文件上
             title: 'Output Management',
             filename: 'index.html', // 生成文件位置
-            template: 'src/index.html', // 模版文件位置
+            template: 'template/index.html', // 模版文件位置
         }),
         // new OpenBrowserPlugin({ // 启动时打开浏览器,npm start配置会打开浏览器，连个同时配置，就会打开多个浏览器
         //     url: 'http://localhost:8080/',
