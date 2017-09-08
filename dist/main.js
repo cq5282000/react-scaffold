@@ -1348,7 +1348,7 @@ eval("/* WEBPACK VAR INJECTION */(function(process) {/**\n * Copyright 2013-pres
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _react = __webpack_require__(81);\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactDom = __webpack_require__(97);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n/**\n * Created by chenqu on 2017/9/4.\n */\n(0, _reactDom.render)(_react2.default.createElement(\n  'div',\n  null,\n  'ain123zheshiyige1'\n), document.getElementById('app'));\n\n//////////////////\n// WEBPACK FOOTER\n// ./src/entry/main.js\n// module id = 183\n// module chunks = 1\n\n//# sourceURL=webpack:///./src/entry/main.js?");
+eval("\n\nvar _react = __webpack_require__(81);\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactDom = __webpack_require__(97);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n/**\n * Created by chenqu on 2017/9/4.\n */\n(0, _reactDom.render)(_react2.default.createElement(\n  'div',\n  null,\n  '\\u8FD9\\u4E2A\\u662F'\n), document.getElementById('app'));\n\n//////////////////\n// WEBPACK FOOTER\n// ./src/entry/main.js\n// module id = 183\n// module chunks = 1\n\n//# sourceURL=webpack:///./src/entry/main.js?");
 
 /***/ })
 /******/ ]);

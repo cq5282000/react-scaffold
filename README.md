@@ -228,3 +228,12 @@ eval-cheap-module-source-map，打击根据个人偏好了。
 - 新建了一个save-init分支来保存原来的东西
 
 - 尽量遵循函数是第一公民原则
+
+### 关于devServer BUG 记录
+
+- devServer的stats可以设置输出日志信息选项
+
+- 但是设置colors无效，其他都可以
+
+- 端口只能设置成127.0.0.1,其他的都无效;
+

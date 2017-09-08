@@ -17,7 +17,22 @@ const devServerOptions = {
     contentBase: false,
     hot: true,
     historyApiFallback: true,
-    // stats: 'verbose',
+    stats: {
+        colors: true,
+        hash: false,
+        version: false,
+        timings: true,
+        assets: false,
+        chunks: false,
+        modules: false,
+        reasons: false,
+        children: false,
+        source: false,
+        errors: true,
+        errorDetails: true,
+        warnings: true,
+        publicPath: false,
+    },
     publicPath: '/entry/',
 };
 
