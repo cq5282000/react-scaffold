@@ -6,7 +6,7 @@
 引入react-router，按需加载的形式，我接下来详细说一下真个项目的搭建过程，算是这段时间的总结，从5秒优化到200-300ms，目前编译时间测是测是
 250多秒左右，是我现在暂时优化的极限，接下来打算记录一下整个项目的搭建过程，避免遗忘
 
-## 项目结构  babel-转码器
+### 项目结构  babel-转码器
 
 NPM项目的搭建就不说了，可以参考我的其他的github链接，这里整个项目的架包管理使用的是yarn，安装指令
 
@@ -59,7 +59,7 @@ $ yarn add babel-polyfill --save-de
 
 ## 脚手架更新日志 2017-09-07
 
-## eslint -- 校验规则
+### eslint -- 校验规则
 
 eslint是编程规范的一个准则，在工程里引入eslint的话，需要在编译器里打开eslint检验，然后在工程的根目录下新建.eslintrc文件，这里使用的
 eslint的版本是eslint-config-airbnb，安装指令如下：
@@ -70,16 +70,16 @@ $ yarn add eslint-config-airbnb --save-dev
 
 若不能满足规则的话，可以在eslint的rules规则中自行添加规范
 
-## gitignore
+### gitignore
 
 .gitignore文件可以设置上传到github的文件类型，一些本地编译或者安装生成的文件，没有必要上传到github，可以在此处做限制
  
-## package.json 
+### package.json 
 
 是架包管理的文件，通过yarn命令或者npm命令安装的一些文件都可以在此找到，scripts可以设置编译和运行命令，此文件无需手动创建，通过npm init
 指令生成，此处不做赘述，其他github有详细介绍
 
-## webpack配置
+### webpack配置
 
 webpack.config.js是webpack的配置文件，关于webpack的详细说明大家可以参考文档，这里指详细说明一下我用到的配置，以及配置的整个修改过程，
 我的整个工程一开始所有的配置如下
@@ -140,7 +140,7 @@ $..........
 不停吧以前清零，保持一个良好的学习心态，才有可能成为大神，虚荣心误人，虚荣心误人，虚荣心误人，心里默念三遍
 
 
-## 优化过程
+### 优化过程
 
 - plugin或者loader覆盖的范围最小，使用include设置作用范围，只把需要用到转码编译的文件进行加载引入，
 
@@ -166,7 +166,7 @@ eval-cheap-module-source-map，打击根据个人偏好了。
 
 - eslint-loader 如果工程中引入了eslint规则，
 
-## 待优化的 
+### 待优化的 
 
 - Minimal Entry Chunk
 
@@ -197,7 +197,9 @@ eval-cheap-module-source-map，打击根据个人偏好了。
  
 - devServer.publicPath和output.publishPath必须要一样，切记切记，不然你HtmlWebpackPlugin打包的东西是加载不到的。
 
-## 修改文件目录 ／/ 2017年9月8号
+## 脚手架更新日志 2017年9月8号
+
+### 修改文件目录 
 
 脚手架的雏形已经具备，接下来主要是优化目录结构
 
@@ -214,4 +216,7 @@ eval-cheap-module-source-map，打击根据个人偏好了。
 页面由多个入口时，HtmlWebpackPlugin会把所有的入口的JS文件打包在生成的html中，所以我们要通过chunks属性进行配置，每个html文件打包对应的js文件
 这一点开发的时候尤其注意，不然就可能会出问题。
 
+### 包的引入
+
+- 引入rd去进行文件的搜索获取和处理，感觉挺好用的
 
