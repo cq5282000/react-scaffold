@@ -18,7 +18,7 @@ const devServerOptions = {
     hot: true,
     historyApiFallback: true,
     stats: 'verbose',
-    publicPath: '/',
+    publicPath: '/entry/',
 };
 
 const server = new WebpackDevServer(compiler, devServerOptions);
@@ -27,7 +27,7 @@ let opened = false;
 const openBrowser = () => {
     const address = server.listeningApp.address();
     const url = `http://${address.address}:${address.port}`;
-    open(`${url}/entry/index.html`);
+    open(`${url}/entry/html/main.html`);
 };
 
 compiler.plugin('done', () => {

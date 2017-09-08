@@ -3,38 +3,39 @@
  */
 const webpack = require('webpack');
 const path = require('path');
+const glob = require('glob');
 // const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const CleanWebpackPlugin = require('clean-webpack-plugin');
-const HappyPack = require('happypack');
+// const HappyPack = require('happypack');
+const ROOT = process.cwd();
+const rd = require('rd');
 
-const SRC = path.join(__dirname, 'src');
+const SRC = path.join(ROOT, 'src');
 
-const webpackConfig = {
+let webpackConfig = {
     entry: {
-        app: [
-            './src/entr/main.js',
-            // './src/entry/app.js',
-        ],
+        // main: './src/entry/main.js',
+        // main2: './src/entry/main2.js',
     },
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(ROOT, 'dist'),
         filename: '[name].js',
-        publicPath: '/',
+        publicPath: '/entry/',
     },
     devtool: 'eval',
     module: {
         rules: [
             {
                 test: /\.js$/,
-                include: path.resolve(__dirname, 'src'),
+                include: path.resolve(ROOT, 'src'),
                 use: 'babel-loader',
             },
             {
                 enforce: 'pre',
                 test: /\.js$/,
                 include: [
-                    path.resolve(path.join(__dirname, './'), 'src'),
+                    path.resolve(path.join(ROOT, './'), 'src'),
                 ],
                 use: 'eslint-loader',
             },
@@ -56,11 +57,22 @@ const webpackConfig = {
         // new webpack.optimize.CommonsChunkPlugin({
         //     name: 'common',
         // }),
-        new HtmlWebpackPlugin({ // 自动绑定bundle文件到模版文件上
-            title: 'Output Management',
-            filename: 'de/index.html', // 生成文件位置
-            template: 'template/index.html', // 模版文件位置
-        }),
+        // new HtmlWebpackPlugin({ // 自动绑定bundle文件到模版文件上
+        //     title: 'Output Management',
+        //     filename: 'html/main.html', // 生成文件位置
+        //     template: 'template/index.html', // 模版文件位置
+        //     chunks: [
+        //         'ma',
+        //     ],
+        // }),
+        // new HtmlWebpackPlugin({ // 自动绑定bundle文件到模版文件上
+        //     title: 'Output Management',
+        //     filename: 'html/main2.html', // 生成文件位置
+        //     template: 'template/index.html', // 模版文件位置
+        //     chunks: [
+        //         'main2',
+        //     ],
+        // }),
         // new OpenBrowserPlugin({ // 启动时打开浏览器,npm start配置会打开浏览器，连个同时配置，就会打开多个浏览器
         //     url: 'http://localhost:8080/',
         // }),
@@ -97,5 +109,17 @@ const webpackConfig = {
         port: 8080,
     },
 };
-
+const { entry } = webpackConfig;
+let { plugins } = webpackConfig;
+rd.eachFileFilterSync(path.join(SRC, '/entry/'), /\.js$/, (file) => {
+    const lastPortion = path.basename(file, '.js');
+    entry[lastPortion] = `./src/entry/${lastPortion}.js`;
+    const htmlWebpackPluginItem = new HtmlWebpackPlugin({
+        filename: `html/${lastPortion}.html`, // 生成文件位置
+        template: 'template/index.html', // 模版文件位置
+        chunks: [lastPortion],
+    });
+    plugins = [...plugins, htmlWebpackPluginItem];
+});
+webpackConfig = Object.assign(webpackConfig, { entry, plugins });
 module.exports = webpackConfig;

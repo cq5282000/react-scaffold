@@ -197,3 +197,17 @@ eval-cheap-module-source-map，打击根据个人偏好了。
  
 - devServer.publicPath和output.publishPath必须要一样，切记切记，不然你HtmlWebpackPlugin打包的东西是加载不到的。
 
+## 修改文件目录 ／/ 2017年9月8号
+
+脚手架的雏形已经具备，接下来主要是优化目录结构
+
+- 把index.html放到template文件下，作为公共模版文件
+
+- 所有的入口文件都放到src/entry/目录下
+
+- 输出的devServer和output的publicPath全部都设成entry，HtmlWebpackPlugin的输出路径设成，html/[filename],这样所有输出的入口路径形式
+就都成了 http://localhost:8080/entry/html/[filename].html,不要问我为什么写成这种形式，我看公司的脚手架都这种入口形式，入乡随俗吗。
+
+
+
+

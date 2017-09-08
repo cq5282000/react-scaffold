@@ -5,6 +5,6 @@ import React from 'react';
 import { render } from 'react-dom';
 
 render(
-    <div>123123</div>,
+    <div>这个是main2qweqeqewq</div>,
     document.getElementById('app'),
 );
