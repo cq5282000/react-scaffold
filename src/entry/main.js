@@ -5,6 +5,6 @@ import React from 'react';
 import { render } from 'react-dom';
 
 render(
-    <div>这个是main12313</div>,
+    <div>为什么速度有时候快，不过也还好</div>,
     document.getElementById('app'),
 );

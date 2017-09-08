@@ -17,7 +17,7 @@ const devServerOptions = {
     contentBase: false,
     hot: true,
     historyApiFallback: true,
-    stats: 'verbose',
+    // stats: 'verbose',
     publicPath: '/entry/',
 };
 
