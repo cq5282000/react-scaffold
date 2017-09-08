@@ -4292,6 +4292,10 @@ tough-cookie@~2.3.0:
   dependencies:
     punycode "^1.4.1"
 
+transform-runtime@^0.0.0:
+  version "0.0.0"
+  resolved "http://r.npm.sankuai.com/transform-runtime/download/transform-runtime-0.0.0.tgz#e714d9b69211dd9537939d50e3aa5788c442b85c"
+
 trim-newlines@^1.0.0:
   version "1.0.0"
   resolved "http://r.npm.sankuai.com/trim-newlines/download/trim-newlines-1.0.0.tgz#5887966bb582a4503a41eb524f7d35011815a613"
