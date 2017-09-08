@@ -208,6 +208,10 @@ eval-cheap-module-source-map，打击根据个人偏好了。
 - 输出的devServer和output的publicPath全部都设成entry，HtmlWebpackPlugin的输出路径设成，html/[filename],这样所有输出的入口路径形式
 就都成了 http://localhost:8080/entry/html/[filename].html,不要问我为什么写成这种形式，我看公司的脚手架都这种入口形式，入乡随俗吗。
 
+### HtmlWebpackPlugin 注意点
 
+稍微更新一下关于HtmlWebpackPlugin这个插件，多页面应用中，每个页面都要去配置HtmlWebpackPlugin,生成该界面对应的html文件，默认情况下，当
+页面由多个入口时，HtmlWebpackPlugin会把所有的入口的JS文件打包在生成的html中，所以我们要通过chunks属性进行配置，每个html文件打包对应的js文件
+这一点开发的时候尤其注意，不然就可能会出问题。
 
 

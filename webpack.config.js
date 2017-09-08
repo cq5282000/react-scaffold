@@ -13,10 +13,10 @@ const rd = require('rd');
 
 const SRC = path.join(ROOT, 'src');
 
-let webpackConfig = {
+const webpackConfig = {
     entry: {
-        // main: './src/entry/main.js',
-        // main2: './src/entry/main2.js',
+        main: './src/entry/main.js',
+        main2: './src/entry/main2.js',
     },
     output: {
         path: path.resolve(ROOT, 'dist'),
@@ -57,22 +57,22 @@ let webpackConfig = {
         // new webpack.optimize.CommonsChunkPlugin({
         //     name: 'common',
         // }),
-        // new HtmlWebpackPlugin({ // 自动绑定bundle文件到模版文件上
-        //     title: 'Output Management',
-        //     filename: 'html/main.html', // 生成文件位置
-        //     template: 'template/index.html', // 模版文件位置
-        //     chunks: [
-        //         'ma',
-        //     ],
-        // }),
-        // new HtmlWebpackPlugin({ // 自动绑定bundle文件到模版文件上
-        //     title: 'Output Management',
-        //     filename: 'html/main2.html', // 生成文件位置
-        //     template: 'template/index.html', // 模版文件位置
-        //     chunks: [
-        //         'main2',
-        //     ],
-        // }),
+        new HtmlWebpackPlugin({ // 自动绑定bundle文件到模版文件上
+            title: 'Output Management',
+            filename: 'html/main.html', // 生成文件位置
+            template: 'template/index.html', // 模版文件位置
+            // chunks: [
+            //     'main',
+            // ],
+        }),
+        new HtmlWebpackPlugin({ // 自动绑定bundle文件到模版文件上
+            title: 'Output Management',
+            filename: 'html/main2.html', // 生成文件位置
+            template: 'template/index.html', // 模版文件位置
+            // chunks: [
+            //     'main2',
+            // ],
+        }),
         // new OpenBrowserPlugin({ // 启动时打开浏览器,npm start配置会打开浏览器，连个同时配置，就会打开多个浏览器
         //     url: 'http://localhost:8080/',
         // }),
@@ -109,17 +109,17 @@ let webpackConfig = {
         port: 8080,
     },
 };
-const { entry } = webpackConfig;
-let { plugins } = webpackConfig;
-rd.eachFileFilterSync(path.join(SRC, '/entry/'), /\.js$/, (file) => {
-    const lastPortion = path.basename(file, '.js');
-    entry[lastPortion] = `./src/entry/${lastPortion}.js`;
-    const htmlWebpackPluginItem = new HtmlWebpackPlugin({
-        filename: `html/${lastPortion}.html`, // 生成文件位置
-        template: 'template/index.html', // 模版文件位置
-        chunks: [lastPortion],
-    });
-    plugins = [...plugins, htmlWebpackPluginItem];
-});
-webpackConfig = Object.assign(webpackConfig, { entry, plugins });
+// const { entry } = webpackConfig;
+// let { plugins } = webpackConfig;
+// rd.eachFileFilterSync(path.join(SRC, '/entry/'), /\.js$/, (file) => {
+//     const lastPortion = path.basename(file, '.js');
+//     entry[lastPortion] = `./src/entry/${lastPortion}.js`;
+//     const htmlWebpackPluginItem = new HtmlWebpackPlugin({
+//         filename: `html/${lastPortion}.html`, // 生成文件位置
+//         template: 'template/index.html', // 模版文件位置
+//         chunks: [lastPortion],
+//     });
+//     plugins = [...plugins, htmlWebpackPluginItem];
+// });
+// webpackConfig = Object.assign(webpackConfig, { entry, plugins });
 module.exports = webpackConfig;
