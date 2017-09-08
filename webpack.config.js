@@ -1,43 +1,51 @@
 /**
  * Created by chenqu on 2017/9/4.
  */
-const webpack = require('webpack');
 const path = require('path');
 const glob = require('glob');
-// const OpenBrowserPlugin = require('open-browser-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const CleanWebpackPlugin = require('clean-webpack-plugin');
-// const HappyPack = require('happypack');
-const ROOT = process.cwd();
 const rd = require('rd');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const SRC = path.join(ROOT, 'src');
+const ROOT = process.cwd(); // 运行目录
+const SRC = path.join(ROOT, 'src'); // 工作目录
+const ENTRY = path.join(SRC, 'entry'); // 入口文件目录
+const DIST = path.join(ROOT, 'dist'); // 输出文件目录
 
-const webpackConfig = {
-    entry: {
-        main: './src/entry/main.js',
-        main2: './src/entry/main2.js',
-    },
+const publicPathStr = '/entry/'; // 公共路径字符串
+const testStr = /\.js$/; // 校验字符串
+const outputFilenameStr = '[name].js';
+
+const BABEL_LOADER = 'babel-loader'; // babel加载器
+const BABEL_LOADER_ENFORCE = 'pre'; // babel-loader enforce属性
+const ESLINT_LOADER = 'eslint-loader'; // eslint-loader加载器
+
+const DEVTOOL = 'eval'; // devTool设置
+
+let webpackConfig = {}; // webpack设置
+
+webpackConfig = {
+    entry: {},
     output: {
-        path: path.resolve(ROOT, 'dist'),
-        filename: '[name].js',
-        publicPath: '/entry/',
+        path: DIST,
+        filename: outputFilenameStr,
+        publicPath: publicPathStr,
     },
-    devtool: 'eval',
+    devtool: DEVTOOL,
     module: {
         rules: [
             {
-                test: /\.js$/,
-                include: path.resolve(ROOT, 'src'),
-                use: 'babel-loader',
+                test: testStr,
+                include: SRC,
+                use: BABEL_LOADER,
             },
             {
-                enforce: 'pre',
-                test: /\.js$/,
+                enforce: BABEL_LOADER_ENFORCE,
+                test: testStr,
                 include: [
-                    path.resolve(path.join(ROOT, './'), 'src'),
+                    SRC,
                 ],
-                use: 'eslint-loader',
+                use: ESLINT_LOADER,
             },
             // {
             //     test: /\.js$/,
@@ -57,22 +65,22 @@ const webpackConfig = {
         // new webpack.optimize.CommonsChunkPlugin({
         //     name: 'common',
         // }),
-        new HtmlWebpackPlugin({ // 自动绑定bundle文件到模版文件上
-            title: 'Output Management',
-            filename: 'html/main.html', // 生成文件位置
-            template: 'template/index.html', // 模版文件位置
-            // chunks: [
-            //     'main',
-            // ],
-        }),
-        new HtmlWebpackPlugin({ // 自动绑定bundle文件到模版文件上
-            title: 'Output Management',
-            filename: 'html/main2.html', // 生成文件位置
-            template: 'template/index.html', // 模版文件位置
-            // chunks: [
-            //     'main2',
-            // ],
-        }),
+        // new HtmlWebpackPlugin({ // 自动绑定bundle文件到模版文件上
+        //     title: 'Output Management',
+        //     filename: 'html/main.html', // 生成文件位置
+        //     template: 'template/index.html', // 模版文件位置
+        //     // chunks: [
+        //     //     'main',
+        //     // ],
+        // }),
+        // new HtmlWebpackPlugin({ // 自动绑定bundle文件到模版文件上
+        //     title: 'Output Management',
+        //     filename: 'html/main2.html', // 生成文件位置
+        //     template: 'template/index.html', // 模版文件位置
+        //     // chunks: [
+        //     //     'main2',
+        //     // ],
+        // }),
         // new OpenBrowserPlugin({ // 启动时打开浏览器,npm start配置会打开浏览器，连个同时配置，就会打开多个浏览器
         //     url: 'http://localhost:8080/',
         // }),
@@ -109,17 +117,17 @@ const webpackConfig = {
         port: 8080,
     },
 };
-// const { entry } = webpackConfig;
-// let { plugins } = webpackConfig;
-// rd.eachFileFilterSync(path.join(SRC, '/entry/'), /\.js$/, (file) => {
-//     const lastPortion = path.basename(file, '.js');
-//     entry[lastPortion] = `./src/entry/${lastPortion}.js`;
-//     const htmlWebpackPluginItem = new HtmlWebpackPlugin({
-//         filename: `html/${lastPortion}.html`, // 生成文件位置
-//         template: 'template/index.html', // 模版文件位置
-//         chunks: [lastPortion],
-//     });
-//     plugins = [...plugins, htmlWebpackPluginItem];
-// });
-// webpackConfig = Object.assign(webpackConfig, { entry, plugins });
+const { entry } = webpackConfig;
+let { plugins } = webpackConfig;
+rd.eachFileFilterSync(ENTRY, /\.js$/, (file) => {
+    const lastPortion = path.basename(file, '.js');
+    entry[lastPortion] = `./src/entry/${lastPortion}.js`;
+    const htmlWebpackPluginItem = new HtmlWebpackPlugin({
+        filename: `html/${lastPortion}.html`, // 生成文件位置
+        template: 'template/index.html', // 模版文件位置
+        chunks: [lastPortion],
+    });
+    plugins = [...plugins, htmlWebpackPluginItem];
+});
+webpackConfig = Object.assign(webpackConfig, { entry, plugins });
 module.exports = webpackConfig;
