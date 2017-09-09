@@ -42,6 +42,8 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "happypack": "^4.0.0-beta.5",
-    "open": "^0.0.5"
+    "open": "^0.0.5",
+    "open-browser-webpack-plugin": "^0.0.5",
+    "react-hot-loader": "next"
   }
 }

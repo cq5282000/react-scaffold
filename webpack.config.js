@@ -15,8 +15,13 @@ const SRC = path.join(ROOT, 'src');
 
 const webpackConfig = {
     entry: {
-        main: './src/entry/main.js',
-        main2: './src/entry/main2.js',
+        main: [
+            'webpack-dev-server/client?http://localhost:8080/',
+            'webpack/hot/dev-server',
+            'react-hot-loader/patch',
+            './src/entry/main.js',
+        ],
+        // main2: './src/entry/main2.js',
     },
     output: {
         path: path.resolve(ROOT, 'dist'),
@@ -65,14 +70,17 @@ const webpackConfig = {
             //     'main',
             // ],
         }),
-        new HtmlWebpackPlugin({ // 自动绑定bundle文件到模版文件上
-            title: 'Output Management',
-            filename: 'html/main2.html', // 生成文件位置
-            template: 'template/index.html', // 模版文件位置
-            // chunks: [
-            //     'main2',
-            // ],
+        new webpack.HotModuleReplacementPlugin({ // 模块热加载
+            // Options...
         }),
+        // new HtmlWebpackPlugin({ // 自动绑定bundle文件到模版文件上
+        //     title: 'Output Management',
+        //     filename: 'html/main2.html', // 生成文件位置
+        //     template: 'template/index.html', // 模版文件位置
+        //     // chunks: [
+        //     //     'main2',
+        //     // ],
+        // }),
         // new OpenBrowserPlugin({ // 启动时打开浏览器,npm start配置会打开浏览器，连个同时配置，就会打开多个浏览器
         //     url: 'http://localhost:8080/',
         // }),
@@ -85,26 +93,35 @@ const webpackConfig = {
         // }),
     ],
     devServer: {
-        historyApiFallback: true,
-        hot: true,
+        // historyApiFallback: true,
+        // hot: true,
+        // inline: true,
+        // progress: true,
+        // stats: {
+        //     colors: true,
+        //     hash: false,
+        //     version: false,
+        //     timings: false,
+        //     assets: false,
+        //     chunks: false,
+        //     modules: false,
+        //     reasons: false,
+        //     children: false,
+        //     source: false,
+        //     errors: true,
+        //     errorDetails: true,
+        //     warnings: true,
+        //     publicPath: false,
+        // },
+        // host: '127.0.0.1',
+        // port: 8080,
+
+        hot: true, // 告诉 dev-server 我们在使用 HMR
+        contentBase: path.resolve(__dirname, 'src'),
         inline: true,
-        progress: true,
-        stats: {
-            colors: true,
-            hash: false,
-            version: false,
-            timings: false,
-            assets: false,
-            chunks: false,
-            modules: false,
-            reasons: false,
-            children: false,
-            source: false,
-            errors: true,
-            errorDetails: true,
-            warnings: true,
-            publicPath: false,
-        },
+        historyApiFallback: true,
+        stats: 'normal',
+        publicPath: '/entry/',
         host: '127.0.0.1',
         port: 8080,
     },
