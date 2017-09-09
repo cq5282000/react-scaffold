@@ -3,8 +3,25 @@
  */
 import React from 'react';
 import { render } from 'react-dom';
+import { AppContainer } from 'react-hot-loader';
+import MainContainer from '../containers/MainContainer';
 
 render(
-    <div>这个是</div>,
+    <AppContainer>
+        <MainContainer/>
+    </AppContainer>,
     document.getElementById('app'),
 );
+
+if (module.hot) {
+    module.hot.accept('./main.js', () => {
+        console.log('react hot loader');
+        const NextApp = require('../containers/MainContainer.js').default;
+        render(
+            <AppContainer>
+                <NextApp/>
+            </AppContainer>,
+            document.getElementById('app'),
+        );
+    });
+}
