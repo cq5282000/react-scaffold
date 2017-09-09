@@ -265,3 +265,7 @@ yarn add react-hot-loader@next
 - .babelrc 的plugins中添加react-hot-loader/babel，
 - 单个界面入口节点添加'react-hot-loader/patch',记住这里的react-hit-loader/pathch 入口节点必须添加在HMR的入口节点之后
 - 如替换的内容需要包裹在<AppContainer/>中，并且用module.hot加载一下
+
+再来补充两句，卧槽他妈的调试模块热加载的时候，突然发现自己原来配的东西又不行了，这个时候不要怀疑自己先，清空浏览器缓存，清空浏览器缓存，
+清空浏览器缓存，what the fuck 为什么会有缓存这种东西，什么鬼，气死我了，浪费我一天找问题，fuck, fuck, fuck,看来是时候给项目装个清空浏览
+器缓存的插件的时候了。。。明天再弄吧。
