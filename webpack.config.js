@@ -19,6 +19,9 @@ const TEMPLATE = 'template/index.html';
 const publicPathStr = '/entry/'; // 公共路径字符串
 const testStr = /\.js$/; // 校验规则字符串
 const outputFilenameStr = '[name].js';
+const statsStr = 'normal'; // stats 设置
+const HMREntryStr = 'webpack/hot/dev-server'; // HMR 入口设置
+const WDSEntryStr = 'webpack-dev-server/client?http://localhost:8080/';
 
 const BABEL_LOADER = 'babel-loader'; // babel加载器
 const BABEL_LOADER_ENFORCE = 'pre'; // babel-loader enforce属性
@@ -30,12 +33,18 @@ let webpackConfig = {}; // webpack设置
 
 // 入口文件配置项
 const entry = {};
-// 产检配置项
+// 插件配置项
 let plugins = [];
+
+const entrySettingItem = (lastPortion) => [
+    'webpack-dev-server/client?http://localhost:8080/',
+    'webpack/hot/dev-server',
+    `./src/entry/${lastPortion}.js`,
+];
 
 rd.eachFileFilterSync(ENTRY, testStr, (file) => {
     const lastPortion = path.basename(file, '.js');
-    entry[lastPortion] = `./src/entry/${lastPortion}.js`;
+    entry[lastPortion] = entrySettingItem(lastPortion);
     const htmlWebpackPluginItem = new HtmlWebpackPlugin({
         filename: `html/${lastPortion}.html`, // 生成文件位置
         template: TEMPLATE, // 模版文件位置
@@ -43,6 +52,10 @@ rd.eachFileFilterSync(ENTRY, testStr, (file) => {
     });
     plugins = [...plugins, htmlWebpackPluginItem];
 });
+
+// HMR插件
+const HMRPlugin = new webpack.HotModuleReplacementPlugin();
+plugins = [...plugins, HMRPlugin];
 
 // 输出配置
 const output = {
@@ -79,10 +92,10 @@ const devServer = {
     contentBase: path.resolve(__dirname, 'src'),
     inline: true,
     historyApiFallback: true,
-    stats: 'normal',
-    publicPath: '/entry/',
-    host: '127.0.0.1',
-    port: 8080,
+    stats: statsStr,
+    publicPath: publicPathStr,
+    host: HOST,
+    port: PORT,
 };
 webpackConfig = Object.assign(webpackConfig, { entry, output, plugins, devServer, module: moduleSetting });
 webpackConfig.devtool = devTool;
