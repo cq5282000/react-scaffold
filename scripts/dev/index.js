@@ -14,26 +14,14 @@ const SRC = path.join(process.cwd(), 'src');
 // const MOCK_SERVER = path.join(process.cwd(), 'mock-server');
 
 const devServerOptions = {
-    contentBase: false,
-    hot: true,
+    hot: true, // 告诉 dev-server 我们在使用 HMR
+    contentBase: path.resolve(__dirname, 'src'),
+    inline: true,
     historyApiFallback: true,
-    stats: {
-        colors: true,
-        hash: false,
-        version: false,
-        timings: true,
-        assets: false,
-        chunks: false,
-        modules: false,
-        reasons: false,
-        children: false,
-        source: false,
-        errors: true,
-        errorDetails: true,
-        warnings: true,
-        publicPath: false,
-    },
+    stats: 'normal',
     publicPath: '/entry/',
+    host: '127.0.0.1',
+    port: 8080,
 };
 
 const server = new WebpackDevServer(compiler, devServerOptions);

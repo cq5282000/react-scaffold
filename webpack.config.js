@@ -75,12 +75,14 @@ moduleSetting.rules = [...moduleSetting.rules, babelLoader, eslintLoader];
 
 // devServer配置
 const devServer = {
-    historyApiFallback: true,
-    hot: true,
+    hot: true, // 告诉 dev-server 我们在使用 HMR
+    contentBase: path.resolve(__dirname, 'src'),
     inline: true,
-    progress: true,
-    host: HOST,
-    port: PORT,
+    historyApiFallback: true,
+    stats: 'normal',
+    publicPath: '/entry/',
+    host: '127.0.0.1',
+    port: 8080,
 };
 webpackConfig = Object.assign(webpackConfig, { entry, output, plugins, devServer, module: moduleSetting });
 webpackConfig.devtool = devTool;
