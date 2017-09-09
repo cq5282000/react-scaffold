@@ -237,3 +237,31 @@ eval-cheap-module-source-map，打击根据个人偏好了。
 
 - 端口只能设置成127.0.0.1,其他的都无效;
 
+## 脚手架更新日志 2017年9月9号
+
+### 引入模块热替换 HMR
+
+- 今天修改了一下devServer的配置，stats设置成normal，去掉了一些多余的选项，
+- 使用模块热替换的话，devServer的hot属性必须设置为true。
+- plugins中引入webpack自带的HotModuleReplacementPlugin()插件，
+- 如果不是使用CLI指令开发，而是使用memory存储webpack配置，new webpackDevServer(compiler）启动devServer的话，使用模块热替换，单个页
+面的入口节点必须添加 "webpack-dev-server/client?http://localhost:8080/" ，"webpack/hot/dev-server"，切记，不要添加到公共的common，
+按道理来说每个页面公共的入口节点添加到common是可以的，可是测试下来就是不可以，指定output.publicPath也非常重要，不然hot update chunks
+可能无法加载，之前没有注意到这些问题，是因为之前使用的一直都是CLI指令设置的,webpack-dev-server --inline --hot,这种方式会自动设置入口
+节点，所以之前一直都无法发现这个问题，这里记录一下，以后一定要注意
+
+### 引入react-hot-loader
+
+这个主要的作用是首先模块的不刷新就可以实时更新修改，非常炫酷的效果，但是感觉公司的大多数框架都没有实现，虽然都有这个配置，但是感觉开发的时候
+还都在刷新，其实实现非常简单，
+
+- 选定版本，这个使用react-hot-loader 3,不同版本的配置方式是不一样的哦，使用babel和es6开发的话，官方推荐是使用3.0的版本，之前使用1.3.1，
+感觉好low，
+- 安装3.0,指令如下
+
+```bash
+yarn add react-hot-loader@next
+```
+- .babelrc 的plugins中添加react-hot-loader/babel，
+- 单个界面入口节点添加'react-hot-loader/patch',记住这里的react-hit-loader/pathch 入口节点必须添加在HMR的入口节点之后
+- 如替换的内容需要包裹在<AppContainer/>中，并且用module.hot加载一下
