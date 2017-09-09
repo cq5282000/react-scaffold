@@ -16,9 +16,9 @@ const SRC = path.join(ROOT, 'src');
 const webpackConfig = {
     entry: {
         main: [
+            'react-hot-loader/patch',
             'webpack-dev-server/client?http://localhost:8080/',
             'webpack/hot/dev-server',
-            'react-hot-loader/patch',
             './src/entry/main.js',
         ],
         // main2: './src/entry/main2.js',

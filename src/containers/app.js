@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 export default class App extends Component {
     render() {
         return (
-            <h1>这是一个测试hggg</h1>
+            <h1>这是一个测试ggg</h1>
         );
     }
 }
