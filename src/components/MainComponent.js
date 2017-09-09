@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 export default class MainComponent extends Component {
     render() {
         return (
-            <div>MainComponent</div>
+            <div>MainComponent这是一个测试</div>
         );
     }
 }

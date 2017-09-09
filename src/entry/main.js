@@ -14,7 +14,7 @@ render(
 );
 
 if (module.hot) {
-    module.hot.accept('./main.js', () => {
+    module.hot.accept('../containers/MainContainer.js', () => {
         console.log('react hot loader');
         const NextApp = require('../containers/MainContainer.js').default;
         render(
