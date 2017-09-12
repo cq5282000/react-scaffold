@@ -12,13 +12,13 @@ export default createReducer(defaultState, {
     [constant.INCREMENT]: (state, action) => {
         return {
             ...state,
-            num: state.num + 1,
+            num: state.num + 2,
         };
     },
     [constant.DECREMENT]: (state, action) => {
         return {
             ...state,
-            num: state.num - 1,
+            num: state.num - 2,
         };
     },
     [constant.CLEAR_NUM]: (state, action) => {
