@@ -16,7 +16,6 @@ const store = createStore(combineReducers(reducer), compose(
 ));
 
 if (module.hot) {
-    // Enable Webpack hot module replacement for reducers
     module.hot.accept('../reducers', () => {
         const nextReducer = require('../reducers').default;
         store.replaceReducer(combineReducers(nextReducer));
