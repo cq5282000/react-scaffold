@@ -4,22 +4,37 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
-import MainContainer from '../containers/MainContainer';
+import { Provider } from 'react-redux';
+import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
+import { createLogger } from 'redux-logger';
+import App from '../containers/MainContainer';
+import reducer from '../reducers';
+
+const logger = createLogger();
+const store = createStore(combineReducers(reducer), compose(
+    applyMiddleware(logger),
+    window.devToolsExtension ? window.devToolsExtension() : (f) => f,
+));
 
 render(
     <AppContainer>
-        <MainContainer/>
+        <Provider store={store}>
+            <App/>
+        </Provider>
     </AppContainer>,
     document.getElementById('app'),
 );
 
 if (module.hot) {
+    console.log('react-hot-loader111');
     module.hot.accept('../containers/MainContainer.js', () => {
         console.log('react hot loader');
         const NextApp = require('../containers/MainContainer.js').default;
         render(
             <AppContainer>
-                <NextApp/>
+                <Provider store={store}>
+                    <NextApp/>
+                </Provider>
             </AppContainer>,
             document.getElementById('app'),
         );

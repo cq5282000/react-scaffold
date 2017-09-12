@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/cq5282000/react-scaffold.git"
   },
-  "author": "",
+  "author": "chenqu",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/cq5282000/react-scaffold/issues"
@@ -38,14 +38,21 @@
     "babel-loader": "^7.1.2",
     "babel-polyfill": "^6.26.0",
     "cross-env": "^5.0.5",
+    "css-loader": "^0.28.7",
     "eslint-loader": "^1.9.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "happypack": "^4.0.0-beta.5",
     "open": "^0.0.5",
+    "postcss-cssnext": "^3.0.2",
+    "postcss-import": "^10.0.0",
+    "postcss-loader": "^2.0.6",
+    "precss": "^2.0.0",
     "react-hot-loader": "next",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "style-loader": "^0.18.2",
     "transform-runtime": "^0.0.0"
   }
 }
