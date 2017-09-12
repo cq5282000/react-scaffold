@@ -90,7 +90,7 @@ webpack.config.js是webpack的配置文件，关于webpack的详细说明大家�
 $..........
       entry: {
           app: [
-              './src/main.js',
+              './src/index-for-demo.js',
           ],
       },
       output: {

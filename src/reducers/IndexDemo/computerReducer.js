@@ -1,8 +1,8 @@
 /**
  * Created by chenqu on 2017/9/11.
  */
-import * as constant from '../configs/actions';
-import { createReducer } from '../libs/common';
+import * as constant from '../../configs/actions';
+import { createReducer } from '../../libs/common';
 
 const defaultState = {
     num: 0,

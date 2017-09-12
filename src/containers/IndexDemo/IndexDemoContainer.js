@@ -4,12 +4,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import actions from '../actions/appAction';
-import './MainContainer.pcss';
+import actions from '../../actions/appAction';
+import './IndexDemoContainer.pcss';
+import IndexComponent from '../../components/IndexComponent/IndexComponent';
 
 let interval = null;
 
-class MainContainer extends Component {
+class IndexDemoContainer extends Component {
     constructor(props) {
         super(props);
         this.minusNum = ::this.minusNum;
@@ -51,6 +52,7 @@ class MainContainer extends Component {
         const { num, show } = this.props;
         return (
             <div className="wrap">
+                <IndexComponent/>
                 <h3>origin Redux</h3>
                 Current Number: <span className="numValue">{num}</span>
                 <div>
@@ -76,4 +78,4 @@ export default connect((state) => ({
     clearNum: actions.clearNum,
     showAlert: actions.showAlert,
     hideAlert: actions.hideAlert,
-})(MainContainer);
+})(IndexDemoContainer);

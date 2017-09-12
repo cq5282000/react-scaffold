@@ -53,7 +53,7 @@ const entrySettingItem = (lastPortion) => [
 ];
 
 rd.eachFileFilterSync(ENTRY, testStr, (file) => {
-    const lastPortion = path.basename(file, '.js');
+    const lastPortion = path.basename(file, '.js').toLowerCase();
     entry[lastPortion] = entrySettingItem(lastPortion);
     const htmlWebpackPluginItem = new HtmlWebpackPlugin({
         filename: `html/${lastPortion}.html`, // 生成文件位置
