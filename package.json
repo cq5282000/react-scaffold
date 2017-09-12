@@ -52,6 +52,7 @@
     "react-hot-loader": "next",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
     "style-loader": "^0.18.2"
   }
 }

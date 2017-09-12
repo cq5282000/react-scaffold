@@ -2,17 +2,22 @@
  * Created by chenqu on 2017/8/7.
  */
 import React, { Component } from 'react';
-import { createStore, combineReducers } from 'redux';
+// import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
+// import { createLogger } from 'redux-logger';
+import { connect } from 'react-redux';
 
-import reducer from '../reducers';
+// import reducer from '../reducers';
 import actions from '../actions/appAction';
-
 import './App.pcss';
 
-const store = createStore(combineReducers(reducer));
+// const logger = createLogger();
+// const store = createStore(combineReducers(reducer), compose(
+//     applyMiddleware(logger),
+//     window.devToolsExtension ? window.devToolsExtension() : (f) => f,
+// ));
 let interval = null;
 
-export default class App extends Component {
+class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -25,47 +30,55 @@ export default class App extends Component {
         this.showAlert = ::this.showAlert;
     }
 
-    componentWillMount() {
-        store.subscribe(this.update);
-    }
+    // componentWillMount() {
+    //     store.subscribe(this.update);
+    // }
 
-    update = () => {
-        const num = store.getState().computerReducer.num;
-        const show = store.getState().alertReducer.show;
-        this.setState({
-            num,
-            show,
-        });
-    };
+    // update = () => {
+    //     const num = store.getState().computerReducer.num;
+    //     const show = store.getState().alertReducer.show;
+    //     this.setState({
+    //         num,
+    //         show,
+    //     });
+    // };
 
     addNum = () => {
         console.log(actions.addNum());
-        store.dispatch(actions.addNum());
+        // store.dispatch(actions.addNum());
+        const { addNum } = this.props;
+        addNum();
     };
 
     minusNum = () => {
         console.log(actions.minusNum());
-        store.dispatch(actions.minusNum());
+        // store.dispatch(actions.minusNum());
+        const { minusNum } = this.props;
+        minusNum();
     };
 
     clearNum = () => {
         console.log(actions.clearNum());
-        store.dispatch(actions.clearNum());
+        // store.dispatch(actions.clearNum());
+        const { clearNum } = this.props;
+        clearNum();
     };
 
     showAlert = () => {
-        store.dispatch(actions.showAlert());
+        // store.dispatch(actions.showAlert());
+        const { showAlert, hideAlert } = this.props;
+        showAlert();
         if (interval) {
             clearInterval(interval);
         }
         interval = setTimeout(() => {
-            store.dispatch(actions.hideAlert());
+            // store.dispatch(actions.hideAlert());
+            hideAlert();
         }, 2000);
     }
 
     render() {
-        const { num } = this.state;
-        const { show } = this.state;
+        const { num, show } = this.props;
         return (
             <div className="wrap">
                 <h3>origin Redux</h3>
@@ -73,7 +86,7 @@ export default class App extends Component {
                 <div>
                     <button className="btn-style" onClick={this.addNum}>+</button>
                     <button className="btn-style" onClick={this.minusNum}>-</button>
-                    <button className="btn-style" onClick={this.clearNum}>clear</button>
+                    <button className="btn-style" onClick={this.clearNum}>clearAll</button>
                     <button className="btn-style" onClick={this.showAlert}>显示alert</button>
                 </div>
                 {
@@ -83,3 +96,14 @@ export default class App extends Component {
         );
     }
 }
+
+export default connect((state) => ({
+    show: state.alertReducer.show,
+    num: state.computerReducer.num,
+}), {
+    addNum: actions.addNum,
+    minusNum: actions.minusNum,
+    clearNum: actions.clearNum,
+    showAlert: actions.showAlert,
+    hideAlert: actions.hideAlert,
+})(App);

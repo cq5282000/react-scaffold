@@ -4,12 +4,23 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
+import { Provider } from 'react-redux';
+import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
+import { createLogger } from 'redux-logger';
 import App from '../containers/app';
+import reducer from '../reducers';
 
-console.log(module.hot);
+const logger = createLogger();
+const store = createStore(combineReducers(reducer), compose(
+    applyMiddleware(logger),
+    window.devToolsExtension ? window.devToolsExtension() : (f) => f,
+));
+
 render(
     <AppContainer>
-        <App/>
+        <Provider store={store}>
+            <App/>
+        </Provider>
     </AppContainer>,
     document.getElementById('app'),
 );
@@ -21,7 +32,9 @@ if (module.hot) {
         const NextApp = require('../containers/app.js').default;
         render(
             <AppContainer>
-                <NextApp/>
+                <Provider store={store}>
+                    <NextApp/>
+                </Provider>
             </AppContainer>,
             document.getElementById('app'),
         );
