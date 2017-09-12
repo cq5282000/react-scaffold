@@ -3,18 +3,31 @@
  */
 import * as constant from '../configs/actions';
 
-export default (state, action) => {
+const defaultState = {
+    num: 0,
+};
+
+export default (state = defaultState, action) => {
     if (typeof state === 'undefined') {
         return 0;
     }
 
     switch (action.type) {
         case constant.INCREASEMENT:
-            return state + 1;
+            return {
+                ...state,
+                num: state.num + 1,
+            };
         case constant.DECREMENT:
-            return state - 1;
+            return {
+                ...state,
+                num: state.num - 1,
+            };
         case constant.CLEAR_NUM:
-            return 0;
+            return {
+                ...state,
+                num: 0,
+            };
         default:
             return state;
     }

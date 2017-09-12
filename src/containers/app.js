@@ -22,7 +22,7 @@ export default class App extends Component {
     }
 
     update = () => {
-        const num = store.getState().toString();
+        const num = store.getState().num;
         this.setState({
             num,
         });
