@@ -18,6 +18,7 @@
         "beforeSelfClosing": "never"
       }
     ],
+    "no-prototype-builtins": ["off"],
     "arrow-body-style": ["off"],
     "class-methods-use-this":["off"],
     "arrow-parens": ["error", "always"],

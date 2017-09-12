@@ -6,6 +6,11 @@ const path = require('path');
 const glob = require('glob');
 // const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const PostcssImport = require('postcss-import');
+const precss = require('precss');
+const cssnext = require('postcss-cssnext');
+
 // const CleanWebpackPlugin = require('clean-webpack-plugin');
 // const HappyPack = require('happypack');
 const ROOT = process.cwd();
@@ -35,6 +40,29 @@ const webpackConfig = {
                 test: /\.js$/,
                 include: path.resolve(ROOT, 'src'),
                 use: 'babel-loader',
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader'],
+            },
+            {
+                test: /\.pcss$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: () => {
+                                return [
+                                    PostcssImport(),
+                                    precss,
+                                    cssnext,
+                                ];
+                            },
+                        },
+                    },
+                ],
             },
             {
                 enforce: 'pre',
