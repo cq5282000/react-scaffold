@@ -269,3 +269,43 @@ yarn add react-hot-loader@next
 再来补充两句，卧槽他妈的调试模块热加载的时候，突然发现自己原来配的东西又不行了，这个时候不要怀疑自己先，清空浏览器缓存，清空浏览器缓存，
 清空浏览器缓存，what the fuck 为什么会有缓存这种东西，什么鬼，气死我了，浪费我一天找问题，fuck, fuck, fuck,看来是时候给项目装个清空浏览
 器缓存的插件的时候了。。。明天再弄吧。
+
+## 脚手架更新日志 2017年9月11号-12号
+
+深切的体会到，学习的道路上有一个良师益友的重要性，他不一定真的牛到天上，但一定是要对你有帮助的，真的非常感谢歆琳不厌其烦的解答我各种问题，他
+的讲课再加上他的博客，让我透彻的理解了redux，所以后期的开发，关于redux的引入，感觉已经没有阻碍了了，很顺利的感觉，还有高冷的烨大神只用两个
+字每次只回答是或者不是，感谢叙鹏的指引，到今天为止，脚手架已经基本完成，但是有一个隐藏的坑，虽然还没做到，但是今天突发奇想的就想到了，然后验
+证了一下，果然，就是reducer无法热更新，具体的解决方案后期再去想，怎么解决。
+
+### 引入redux，react-redux
+
+redux的具体原理不做详细说明，基本原则就是：
+- store是唯一数据源，所有的state都存存储在store中，通过getState()读取显示。
+- store是只读的，想要改变store，只能通过分派action，通过reucer修改，
+- 创建store的时候需要传递一个函数签名reducer，这个reducer可以是单一的reduce，也可以是combineReducers，
+- 原生的redux需要通过subscribe注册监听函数，每次当state改变的时候，会触发这个监听函数，所有页面显示的该改变的处理操作写在这个监听函数里
+- react-redux提供了Provider和connect两个API，直接把组件的state和action creator映射到props上，这样我们就不用在注册监听函数，connect
+封装了dispatc，我们也不用在手动去dispatch，可以说是整个工程的结构更加简洁明了
+- 深入的理解redux的原理对于搭建脚手架必不可少，因为深入了解了原理，才能更好的规划结构，我整个搭建过程基本就是一开始只引入redu，跑通功能，然
+后再去引入react-redu，集合原理，对比区别，优化目录结构
+
+### 重组目录结构
+
+- 新建actions目录，来存储所有的页面action，开发过程中最好每个界面都单独新建一个`${page-name}Action.js`的文件来存储单独的action，也可以
+新建名为`${page-name}`的文件夹，然后在该文件夹下新建以页面中的所有组件为名的`${component-name}.js`文件来存储action，最后在每个文件夹下
+新建index.js, 去输出所有的组件的action调用，个人感觉后者比较规范，我现在所有的开发不管是组件还是reduce，基本都是新建文件夹，用index.js
+输出，关于action的写法，遵循函数式编程的规范，都用函数去return；
+
+- reducer文件夹下，存储所有页面的reducer，最后用index.js去export,类似于action 的布局结构，大家根据偏好来，其实也没那么死，不过规范点肯
+定没毛病
+- 新建libs文件夹，去存储各种公共的方法，
+- configs下去存储配置文件，比如 action的配置等等
+- 所有业务组件的都存储在containers中
+- 所有的展示组件都存储在conponents中
+
+### 样式
+
+- 引入css-loader,style-loader, postcss-loader来支持样式的引用
+- 引入postcss-import来支持@import
+- 新建样式文件的时候，组件对应的PCSS文件和组件写在一起，
+
