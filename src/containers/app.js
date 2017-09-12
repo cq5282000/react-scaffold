@@ -10,6 +10,7 @@ import actions from '../actions/appAction';
 import './App.pcss';
 
 const store = createStore(combineReducers(reducer));
+let interval = null;
 
 export default class App extends Component {
     constructor(props) {
@@ -18,6 +19,10 @@ export default class App extends Component {
             num: 0,
             show: false,
         };
+        this.minusNum = ::this.minusNum;
+        this.addNum = ::this.addNum;
+        this.clearNum = ::this.clearNum;
+        this.showAlert = ::this.showAlert;
     }
 
     componentWillMount() {
@@ -26,8 +31,10 @@ export default class App extends Component {
 
     update = () => {
         const num = store.getState().computerReducer.num;
+        const show = store.getState().alertReducer.show;
         this.setState({
             num,
+            show,
         });
     };
 
@@ -46,6 +53,16 @@ export default class App extends Component {
         store.dispatch(actions.clearNum());
     };
 
+    showAlert = () => {
+        store.dispatch(actions.showAlert());
+        if (interval) {
+            clearInterval(interval);
+        }
+        interval = setTimeout(() => {
+            store.dispatch(actions.hideAlert());
+        }, 2000);
+    }
+
     render() {
         const { num } = this.state;
         const { show } = this.state;
@@ -57,7 +74,7 @@ export default class App extends Component {
                     <button className="btn-style" onClick={this.addNum}>+</button>
                     <button className="btn-style" onClick={this.minusNum}>-</button>
                     <button className="btn-style" onClick={this.clearNum}>clear</button>
-                    <button className="btn-style">显示alert</button>
+                    <button className="btn-style" onClick={this.showAlert}>显示alert</button>
                 </div>
                 {
                     show && <div className="alert-style">这是一个Alert</div>
