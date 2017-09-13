@@ -59,10 +59,10 @@ class IndexDemoContainer extends Component {
                     <button className="btn-style" onClick={this.addNum}>+</button>
                     <button className="btn-style" onClick={this.minusNum}>-</button>
                     <button className="btn-style" onClick={this.clearNum}>clearAll</button>
-                    <button className="btn-style" onClick={this.showAlert}>显示alert</button>
+                    <button className="btn-style" onClick={this.showAlert}>1111</button>
                 </div>
                 {
-                    show && <div className="alert-style">这是一个Alert</div>
+                    show && <div className="alert-style">show alert</div>
                 }
             </div>
         );
