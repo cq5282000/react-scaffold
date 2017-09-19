@@ -18,7 +18,7 @@ export default createReducer(defaultState, {
     [constant.DECREMENT]: (state, action) => {
         return {
             ...state,
-            num: state.num - 10,
+            num: state.num - 100,
         };
     },
     [constant.CLEAR_NUM]: (state, action) => {

@@ -21,25 +21,25 @@ $ yarn install
 安装指令：
 
 ```bash
-$ yarn add babel-preset-stage-0 --save-dev
+$ yarn add babel-preset-stage-0 --dev
 ```
 
 - babel-preset-react 是react的转码规则，安装指令
 
 ```bash
-$ yarn add babel-preset-react --save-dev
+$ yarn add babel-preset-react --dev
 ```
 
 - babel-preset-es2015 es2015语法的转码规则，安装指令
 
 ```bash
-$ yarn add babel-preset-es2015 --save-dev
+$ yarn add babel-preset-es2015 --dev
 ```
 
 - babel-register 改写require命令，为他加上一个钩子，每当使用require加载 .js, .jsx , .es ,.es6后缀名的文件，就会先用babel进行转码
 
 ```bash
-$ yarn add babel-register --save-dev
+$ yarn add babel-register --dev
 ```
 
 使用是必须先加载babel-register,
@@ -54,7 +54,7 @@ $ require('babel-register')();
 - babel-polyfill babel默认只转换心得javascript语法，而不转换新的API，例如Promise，以及一些定义在全局对象上的语法，安装指令
 
 ```bash
-$ yarn add babel-polyfill --save-de
+$ yarn add babel-polyfill --dev
 ```
 
 ## 脚手架更新日志 2017-09-07
@@ -65,7 +65,7 @@ eslint是编程规范的一个准则，在工程里引入eslint的话，需要�
 eslint的版本是eslint-config-airbnb，安装指令如下：
 
 ```bash
-$ yarn add eslint-config-airbnb --save-dev
+$ yarn add eslint-config-airbnb --dev
 ```
 
 若不能满足规则的话，可以在eslint的rules规则中自行添加规范
