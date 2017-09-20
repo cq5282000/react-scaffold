@@ -25,6 +25,7 @@ const statsStr = 'normal'; // stats 设置
 const HMREntryStr = 'webpack/hot/dev-server'; // HMR 入口设置
 const WDSEntryStr = 'webpack-dev-server/client?http://localhost:8080/'; // WDS入口设置
 const ReactHotLoaderStr = 'react-hot-loader/patch'; // react-hot-loader 入口设置
+const BABEL_POLYFILL = 'babel-polyfill';
 
 const BABEL_LOADER = 'babel-loader'; // babel加载器
 const BABEL_LOADER_ENFORCE = 'pre'; // babel-loader enforce属性
@@ -49,6 +50,7 @@ const entrySettingItem = (lastPortion) => [
     WDSEntryStr,
     HMREntryStr,
     ReactHotLoaderStr,
+    BABEL_POLYFILL,
     `./src/entry/${lastPortion}.js`,
 ];
 

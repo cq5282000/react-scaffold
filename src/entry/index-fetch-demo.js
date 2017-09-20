@@ -1,10 +1,14 @@
 /**
  * Created by chenqu on 2017/9/4.
  */
-import React from 'react';
-import { render } from 'react-dom';
+import IndexDemoContainer from '../containers/IndexFetchDemo/IndexFetchDemoContainer';
+import render from '../libs/createRender';
 
-render(
-    <div>这是main</div>,
-    document.getElementById('app'),
-);
+render(IndexDemoContainer);
+if (module.hot) {
+    module.hot.accept('../containers/IndexFetchDemo/IndexFetchDemoContainer', () => {
+        const NewEntry = require('../containers/IndexFetchDemo/IndexFetchDemoContainer').default;
+        render(NewEntry);
+    });
+}
+

@@ -1,0 +1,24 @@
+{
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "list": [
+      {
+        "id": 1,
+        "description": "这是一个脚手架"
+      },
+      {
+        "id": 2,
+        "description": "这是一个脚手架"
+      },
+      {
+        "id": 3,
+        "description": "这是一个脚手架"
+      },
+      {
+        "id": 4,
+        "description": "这是一个脚手架"
+      }
+    ]
+  }
+}
