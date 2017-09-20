@@ -44,6 +44,7 @@
     "rd": "^1.1.2",
     "react-hot-loader": "next",
     "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0",
     "style-loader": "^0.18.2",
     "transform-runtime": "^0.0.0",
     "webpack": "^3.5.5",

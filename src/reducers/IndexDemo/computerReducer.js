@@ -12,7 +12,7 @@ export default createReducer(defaultState, {
     [constant.INCREMENT]: (state, action) => {
         return {
             ...state,
-            num: state.num + 10,
+            num: state.num + 100,
         };
     },
     [constant.DECREMENT]: (state, action) => {
