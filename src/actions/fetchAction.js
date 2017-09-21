@@ -5,11 +5,13 @@ import * as constant from '../configs/actions';
 import fetch from '../libs/fetch';
 
 export default {
-    fetchList: async() => {
-        const responseData = await fetch('../../mock-server/api/list.json');
-        return {
+    fetchList: () => async(dispatch) => {
+        const responseData = await fetch({
+            url: 'list',
+        });
+        dispatch({
             type: constant.FETCH_LIST,
             data: responseData,
-        };
+        });
     },
 };

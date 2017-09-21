@@ -18,7 +18,7 @@ class IndexFetchDemoContainer extends Component {
 
     render() {
         const { listData } = this.props;
-        return (<div>{ listData }</div>);
+        return (<div>{ JSON.stringify(listData) }</div>);
     }
 }
 

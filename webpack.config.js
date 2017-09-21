@@ -7,7 +7,7 @@ const rd = require('rd');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // 输出配置插件
 
-const HOST = '127.0.0.1'; // 服务器IP
+const HOST = '0.0.0.0'; // 服务器IP
 const PORT = 8080; // 端口
 
 const ROOT = process.cwd(); // 运行目录
@@ -39,6 +39,16 @@ const cssnext = require('postcss-cssnext');
 
 const DEVTOOL = 'eval'; // devTool设置
 
+// 环境变量
+const PRODUCTION = 'production';
+const DEVELOPMENT = 'development';
+let NODE_ENV = process.env.NODE_ENV || process.env.ENV || PRODUCTION;
+
+// 注: product环境 process.env.ENV的值不是'production'而是'product'...
+if (NODE_ENV.toLowerCase() === 'product') {
+    NODE_ENV = PRODUCTION;
+}
+
 let webpackConfig = {}; // webpack设置
 
 // 入口文件配置项
@@ -68,6 +78,31 @@ rd.eachFileFilterSync(ENTRY, testStr, (file) => {
 // HMR插件
 const HMRPlugin = new webpack.HotModuleReplacementPlugin();
 plugins = [...plugins, HMRPlugin];
+
+// definePlugin定义全局环境变量
+const defineEnvPlugin = (envStr) => {
+    return new webpack.DefinePlugin({
+        'process.env': {
+            NODE_ENV: JSON.stringify(envStr),
+        },
+    });
+};
+// 代码丑化
+const uglifyPlugin = new webpack.optimize.UglifyJsPlugin({
+    compress: {
+        warnings: false,
+    },
+});
+
+switch (NODE_ENV) {
+    case 'development':
+        plugins = [...plugins, defineEnvPlugin('development')];
+        break;
+    case 'production':
+        plugins = [...plugins, uglifyPlugin, defineEnvPlugin('production')];
+    default: // eslint-disable-line
+        break;
+}
 
 // 输出配置
 const output = {
