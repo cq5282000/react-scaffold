@@ -7,7 +7,7 @@ import fetch from '../libs/fetch';
 export default {
     fetchList: () => async(dispatch) => {
         const responseData = await fetch({
-            url: 'list',
+            url: './list',
         });
         dispatch({
             type: constant.FETCH_LIST,

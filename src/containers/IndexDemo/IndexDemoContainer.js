@@ -3,7 +3,6 @@
  */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import actions from '../../actions/appAction';
 import './IndexDemoContainer.pcss';
 import IndexComponent from '../../components/IndexComponent/IndexComponent';

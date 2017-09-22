@@ -5,6 +5,7 @@ import 'whatwg-fetch';
 import * as env from '../configs/env';
 import envConst from '../configs/envConst';
 import * as requestMethod from '../configs/requestMethod';
+import requestPath from './requestPath';
 
 const MOCK_DELAY = 1000;
 
@@ -16,8 +17,10 @@ const getMockData = async({
 }) => {
     const context = require.context('../../mock-server/api', true, /\.js(on)?$/);
     let responseData = null;
+    const requestUrl = requestPath(url);
     try {
-        responseData = context(`${url}.json`);
+        // responseData = context(`${requestUrl}.json`);
+        responseData = context(requestUrl);
         console.log('responseData:', responseData);
     } catch (e) {
         throw new Error('404 Not Found');

@@ -11,9 +11,11 @@ const HOST = '0.0.0.0'; // 服务器IP
 const PORT = 8080; // 端口
 
 const ROOT = process.cwd(); // 运行目录
-const SRC = path.join(ROOT, 'src'); // 工作目录
-const ENTRY = path.join(SRC, 'entry'); // 入口文件目录
-const DIST = path.join(ROOT, 'dist'); // 输出文件目录
+const SRC = path.resolve(ROOT, 'src'); // 工作目录
+const ENTRY = path.resolve(SRC, 'entry'); // 入口文件目录
+const DIST = path.resolve(ROOT, 'dist'); // 输出文件目录
+const COMPONENT = path.resolve(SRC, 'components'); // 组件库目录
+const LIB = path.resolve(SRC, 'libs');
 
 const TEMPLATE = 'template/index.html';
 const publicPathStr = '/entry/'; // 公共路径字符串
@@ -26,6 +28,9 @@ const HMREntryStr = 'webpack/hot/dev-server'; // HMR 入口设置
 const WDSEntryStr = 'webpack-dev-server/client?http://localhost:8080/'; // WDS入口设置
 const ReactHotLoaderStr = 'react-hot-loader/patch'; // react-hot-loader 入口设置
 const BABEL_POLYFILL = 'babel-polyfill';
+const libPathStr = '@visus-libs';
+const componentPathStr = '@visus-components';
+const extensions = ['.js', '.jsx', '.css', '.pcss', '.json'];
 
 const BABEL_LOADER = 'babel-loader'; // babel加载器
 const BABEL_LOADER_ENFORCE = 'pre'; // babel-loader enforce属性
@@ -44,7 +49,7 @@ const PRODUCTION = 'production';
 const DEVELOPMENT = 'development';
 let NODE_ENV = process.env.NODE_ENV || process.env.ENV || PRODUCTION;
 
-// 注: product环境 process.env.ENV的值不是'production'而是'product'...
+// 注: product环境 process.env.ENV的值不是'production'而是'product'
 if (NODE_ENV.toLowerCase() === 'product') {
     NODE_ENV = PRODUCTION;
 }
@@ -75,6 +80,14 @@ rd.eachFileFilterSync(ENTRY, testStr, (file) => {
     plugins = [...plugins, htmlWebpackPluginItem];
 });
 
+// resolve 配置
+let resolve = {};
+const alias = {};
+alias[libPathStr] = LIB;
+alias[componentPathStr] = COMPONENT;
+resolve = Object.assign(resolve, { alias }, { extensions });
+
+
 // HMR插件
 const HMRPlugin = new webpack.HotModuleReplacementPlugin();
 plugins = [...plugins, HMRPlugin];
@@ -95,11 +108,11 @@ const uglifyPlugin = new webpack.optimize.UglifyJsPlugin({
 });
 
 switch (NODE_ENV) {
-    case 'development':
-        plugins = [...plugins, defineEnvPlugin('development')];
+    case DEVELOPMENT:
+        plugins = [...plugins, defineEnvPlugin(DEVELOPMENT)];
         break;
-    case 'production':
-        plugins = [...plugins, uglifyPlugin, defineEnvPlugin('production')];
+    case PRODUCTION:
+        plugins = [...plugins, uglifyPlugin, defineEnvPlugin(PRODUCTION)];
     default: // eslint-disable-line
         break;
 }
@@ -159,7 +172,8 @@ moduleSetting.rules = [...moduleSetting.rules, babelLoader, eslintLoader, cssLoa
 // devServer配置
 const devServer = {
     hot: true, // 告诉 dev-server 我们在使用 HMR
-    contentBase: path.resolve(__dirname, 'src'),
+    // contentBase: path.resolve(__dirname, 'src'),
+    contentBase: SRC,
     inline: true,
     historyApiFallback: true,
     stats: statsStr,
@@ -167,6 +181,6 @@ const devServer = {
     host: HOST,
     port: PORT,
 };
-webpackConfig = Object.assign(webpackConfig, { entry, output, plugins, devServer, module: moduleSetting });
+webpackConfig = Object.assign(webpackConfig, { entry, output, resolve, plugins, devServer, module: moduleSetting });
 webpackConfig.devtool = devTool;
 module.exports = webpackConfig;

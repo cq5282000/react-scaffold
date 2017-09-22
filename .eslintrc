@@ -8,10 +8,10 @@
         "SwitchCase": 1
       }
     ],
-    "react/jsx-space-before-closing": [
-      "error",
-      "never"
-    ],
+//    "react/jsx-space-before-closing": [
+//      "error",
+//      "never"
+//    ],
     "react/jsx-tag-spacing": [
       "error",
       {

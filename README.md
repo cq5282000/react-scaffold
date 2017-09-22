@@ -334,3 +334,40 @@ redux的具体原理不做详细说明，基本原则就是：
 
 - 优化针对移动端的站点模版文件，加入viewport属性，响应式布局，满足不同设备屏幕和分辨率的需要
 
+## 脚手架更新日志 2017年9月21号
+
+### 环境变量
+
+了解了下关于运行环境，有以下几点：
+
+- process.env.ENV 是CI传进来的环境变量
+
+- process.env.NODE_ENV 是自定义环境变量，
+
+- CLI指令中的NODE_ENV是传递给webpcak.config.js的，生产环境中，可以直接通过process.env.ENV获取，
+
+- 开发环境中是不存在process.env.NODE_ENV这个变量的，一般通过CLI指令传递，通过CLI指令传递的，只有通过webpack打包的文件才能获取到，
+
+- 比如一般封装fetch请求的时候，需要根据环境变量去判断是直接取mock数据，还是远程请求，这时候是获取不到CLI传递过来的NODE_ENV,需要通过
+definePlugin声明一个全局的变量NODE_ENV。
+
+- 生产环境 process.env.ENV的值不是'production'而是'product'
+
+封装fetch请求也一波三折
+
+- fetch请求在development环境下是直接require的本地的mock数据
+
+- 请求延迟是自己模拟的
+
+- require('./list.json')可以获取数据，但是require('list.json')获取不到，这是因为resolve设置的问题，没有./是把路径解析成包，fetch真
+实环境不好测试，封装了也不知道对错，碰到了问题联系微信号yingyangkuaixian11.
+
+## 脚手架更新日志 2017年9月22号
+
+### fetch请求完善
+
+修改webapck的resolve配，加入路径解析的配置
+
+- 设置了一下resolve，给组件和lib修改了引用的路径名称，感觉逼格会高一点
+
+- 
