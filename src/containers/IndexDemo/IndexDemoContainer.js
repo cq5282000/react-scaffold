@@ -3,9 +3,10 @@
  */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+// import IndexComponent from '@visus-components/IndexComponent/IndexComponent';
+import IndexComponent from '../../components/IndexComponent/IndexComponent';
 import actions from '../../actions/appAction';
 import './IndexDemoContainer.pcss';
-import IndexComponent from '../../components/IndexComponent/IndexComponent';
 
 let interval = null;
 
