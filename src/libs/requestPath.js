@@ -4,5 +4,5 @@
 const path = require('path');
 
 export default (url) => {
-    return path.resolve(`${url}.json`);
+    return `${url}.json`;
 };

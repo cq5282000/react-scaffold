@@ -368,6 +368,6 @@ definePlugin声明一个全局的变量NODE_ENV。
 
 修改webapck的resolve配，加入路径解析的配置
 
-- 设置了一下resolve，给组件和lib修改了引用的路径名称，感觉逼格会高一点
+- 设置了一下resolve，给组件和lib修改了引用的路径名称，感觉逼格会高一点,但是会报错，所以应该是放弃了
 
 - 
