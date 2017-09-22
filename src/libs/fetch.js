@@ -7,9 +7,10 @@ import querystring from 'querystring';
 import * as env from '../configs/env';
 import envConst from '../configs/envConst';
 import * as requestMethod from '../configs/requestMethod';
+import sleep from './sleep';
 import requestPath from './requestPath';
 
-const MOCK_DELAY = 1000;
+const MOCK_DELAY = 2000;
 
 const getMockData = async({
     url,
@@ -79,6 +80,7 @@ export default async(config) => {
     let responseData = null;
     if (envConst === env.LOCAL || envConst === env.DEVELOPMENT) {
         responseData = await getMockData(config);
+        await sleep(MOCK_DELAY);
     } else {
         responseData = await fetchOriginData(config);
     }
