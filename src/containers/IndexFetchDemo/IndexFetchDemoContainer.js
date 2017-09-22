@@ -8,17 +8,24 @@ import actions from '../../actions/fetchAction';
 class IndexFetchDemoContainer extends Component {
     constructor(props) {
         super(props);
-        console.log('IndexFetchDemoContainer');
+        this.fetchData = ::this.fetchData;
     }
 
-    componentWillMount() {
+    componentWillMount() {}
+
+    fetchData = () => {
         const { fetchList } = this.props;
         fetchList();
     }
 
     render() {
         const { listData } = this.props;
-        return (<div>{ JSON.stringify(listData) }</div>);
+        return (
+            <div>
+                <button onClick={this.fetchData}>发起fetch请求</button>
+                <div>{ JSON.stringify(listData) }</div>
+            </div>
+        );
     }
 }
 
