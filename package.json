@@ -22,7 +22,7 @@
     "babel-eslint": "^7.2.3",
     "babel-loader": "^7.1.2",
     "babel-polyfill": "^6.26.0",
-    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-env": "next",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.26.0",

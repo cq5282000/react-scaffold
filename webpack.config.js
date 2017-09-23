@@ -86,7 +86,6 @@ const alias = {};
 alias[libPathStr] = LIB;
 alias[componentPathStr] = COMPONENT;
 resolve = Object.assign(resolve, { alias }, { extensions });
-console.log(resolve);
 
 // HMR插件
 const HMRPlugin = new webpack.HotModuleReplacementPlugin();
