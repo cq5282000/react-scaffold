@@ -32,6 +32,8 @@
 └── yarn.lock                     # yarn 版本锁
 
 ```
+## 使用脚手架
+
 
 
 
@@ -413,4 +415,4 @@ definePlugin声明一个全局的变量NODE_ENV。
 
 ### 修改配置选项
 
-- 
+- 没修改成功，放弃了，mark一下babel-preset-env,有问题，未解决
