@@ -34,8 +34,41 @@
 ```
 ## 使用脚手架
 
+- 首先安装gt工具
 
+```bash
+$ npm i -g granturismo
+```
 
+- 添加脚手架
+
+```bash
+$ gt config add react-scaffold https://github.com/cq5282000/react-scaffold.git
+```
+
+- 预案曾新建工程，同步到本地然后在根目录下执行
+
+```bash
+$ gt init
+```
+
+- 然后选择react-scaffold,初始化工程
+
+- 安装
+
+```bash
+$ yarn install
+```
+
+- 运行
+
+```bash
+$ yarn run dev
+```
+
+然后就可以进行开发了。。。。
+
+----------------------------------------------------愉快的分割线----------------------------------------------------------
 
 # react-scaffold
 
