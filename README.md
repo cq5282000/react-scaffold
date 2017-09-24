@@ -1,3 +1,38 @@
+## any question
+
+微信 - yingyangkuaixian11
+
+## 目录结构
+
+```                 
+├── mock-server                   # 本地模拟数据接口
+|  └── api                        # 本地测试接口
+├── node_modules                  # 架包管理目录  
+├── scripts                       # 脚本目录
+|  ├── dev                        # 启动本地服务器配置
+|  └── dev.js                     # 转码配置
+├── src                           # 工程源码目录
+|  ├── actions                    # redux的action目录，开发时建议每个界面的action单独新建文件夹，首字母大写，文件夹下新建js文件
+|  ├── api                        # 接口定义
+|  ├── components                 # 抽象组件存放目录
+|  ├── configs                    # 工程配置目录
+|  ├── containers                 # 业务组件存放目录，开发式建议每个页面新建文件夹，首字母大写，文件夹下新建JS文件，首字母大写
+|  ├── entry                      # 入口文件，一律小写，不能大写
+|  ├── libs                       # 常用API 的存放目录
+|  └── reducers                   # redux的reducer目录。开发时建议每个页面新建文件夹，首字母大写，文件夹下新建JS文件
+├── template                      # 模版文件目录
+|  └── index.html                 # 全局界面的模版文件
+├── .babelrc                      # 转码器配置
+├── .eslintrc                     # eslint检验规则，此工程使用的是eslint-config-airbnb
+├── .gitignore                    # GitHub远程推送规则设置
+├── package.json                  # node配置文件
+├── README.md                     # 说明文档
+├── webpack.config.js             # webpack 配置文件
+├── yarn-error.log                # yarn 日志文件
+└── yarn.lock                     # yarn 版本锁
+
+```
+
 # react-scaffold
 
 ## 脚手架更新日志 2017-09-06
