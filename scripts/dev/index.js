@@ -13,18 +13,18 @@ const compiler = webpack(webpackConfig);
 const SRC = path.join(process.cwd(), 'src');
 // const MOCK_SERVER = path.join(process.cwd(), 'mock-server');
 
-const devServerOptions = {
-    hot: true, // 告诉 dev-server 我们在使用 HMR
-    contentBase: path.resolve(__dirname, 'src'),
-    inline: true,
-    historyApiFallback: true,
-    stats: 'normal',
-    publicPath: '/entry/',
-    host: '0.0.0.0',
-    port: 8080,
-};
+// const devServerOptions = {
+//     hot: true, // 告诉 dev-server 我们在使用 HMR
+//     contentBase: path.resolve(__dirname, 'src'),
+//     inline: true,
+//     historyApiFallback: true,
+//     stats: 'normal',
+//     publicPath: '/entry/',
+//     host: '0.0.0.0',
+//     port: 8080,
+// };
 
-const server = new WebpackDevServer(compiler, devServerOptions);
+const server = new WebpackDevServer(compiler, webpackConfig.devServer);
 let opened = false;
 
 const openBrowser = () => {
