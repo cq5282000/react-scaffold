@@ -8,7 +8,7 @@ import reducer from '../reducers';
 
 const logger = createLogger();
 const store = createStore(combineReducers(reducer), compose(
-    applyMiddleware(logger, thunk),
+    applyMiddleware(thunk, logger),
     window.devToolsExtension ? window.devToolsExtension() : (f) => f,
 ));
 
