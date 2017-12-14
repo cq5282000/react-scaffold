@@ -1,8 +1,19 @@
 /**
  * Created by chenqu on 2017/9/22.
  */
-const path = require('path');
+/**
+ * Created by chenqu on 2017/9/22.
+ */
+import * as env from '../configs/env';
+import envConst from '../configs/envConst';
 
 export default (url) => {
-    return `${url}.json`;
+    switch (envConst) {
+        case env.DEVELOPMENT:
+            return `.${url}.json`;
+        case env.BETA:
+            return `${location.protocol}//${location.host}${url}`;
+        default:
+            return null;
+    }
 };

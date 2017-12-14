@@ -52,7 +52,7 @@ class IndexDemoContainer extends Component {
         const { num, show } = this.props;
         return (
             <div className="wrap">
-                <IndexComponent/>
+                <IndexComponent />
                 <h3>origin Redux</h3>
                 Current Number: <span className="numValue">{num}</span>
                 <div>

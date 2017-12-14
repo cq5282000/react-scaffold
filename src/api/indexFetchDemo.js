@@ -5,7 +5,7 @@ import fetch from '../libs/fetch';
 
 export const fetchListData = async(param) => {
     const responseData = await fetch({
-        url: './list',
+        url: '/list',
         param,
     });
     if (!responseData.data) {

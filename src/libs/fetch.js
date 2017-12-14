@@ -10,7 +10,7 @@ import * as requestMethod from '../configs/requestMethod';
 import sleep from './sleep';
 import requestPath from './requestPath';
 
-const MOCK_DELAY = 2000;
+const MOCK_DELAY = 1000;
 
 const getMockData = async({
     url,
@@ -22,9 +22,7 @@ const getMockData = async({
     let responseData = null;
     const requestUrl = requestPath(url);
     try {
-        // responseData = context(`${requestUrl}.json`);
         responseData = context(requestUrl);
-        console.log('responseData:', responseData);
     } catch (e) {
         throw new Error('404 Not Found');
     }
@@ -36,12 +34,17 @@ const getMockData = async({
     };
 };
 
-const fetchOriginData = async(
+const timeoutPromise = async(timeout) => {
+    await sleep(timeout);
+    // throw new TimeoutError(timeout);
+};
+
+const fetchOriginData = async({
     url,
     param,
     method = requestMethod.GET,
     mockDelay = MOCK_DELAY,
-) => {
+}) => {
     const reqMethod = method.toUpperCase();
     const options = {
         method: reqMethod,
@@ -49,8 +52,9 @@ const fetchOriginData = async(
     };
     let reqPath = '';
     if (reqMethod === requestMethod.GET) {
+        const requestUrl = requestPath(url);
         reqPath = nodeUrl.format({
-            pathname: requestPath,
+            pathname: requestUrl,
             query: param,
         });
     } else if (reqMethod === requestMethod.POST) {
@@ -66,7 +70,8 @@ const fetchOriginData = async(
             'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
         };
     }
-    const responseData = await fetch(reqPath, options);
+    const response = await fetch(reqPath, options);
+    const responseData = await Promise.race([timeoutPromise(60000), response.json()]);
     /**
      * 差错处理部分，还没做，待完善
      */
@@ -76,7 +81,6 @@ const fetchOriginData = async(
 };
 
 export default async(config) => {
-    // const { url } = config;
     let responseData = null;
     if (envConst === env.LOCAL || envConst === env.DEVELOPMENT) {
         responseData = await getMockData(config);
@@ -85,12 +89,4 @@ export default async(config) => {
         responseData = await fetchOriginData(config);
     }
     return responseData.json();
-    // fetch(url)
-    //     .then((response) => {
-    //         return response.json();
-    //     }).then((json) => {
-    //         console.log('parsed json', json);
-    //     }).catch((ex) => {
-    //         console.log('parsing failed', ex);
-    //     });
 };

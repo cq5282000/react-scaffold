@@ -11,7 +11,7 @@ export default (Entry) => {
     return render(
         <AppContainer>
             <Provider store={store}>
-                <Entry/>
+                <Entry />
             </Provider>
         </AppContainer>,
         document.getElementById('app'),

@@ -30,7 +30,7 @@ let opened = false;
 const openBrowser = () => {
     const address = server.listeningApp.address();
     const url = `http://${address.address}:${address.port}`;
-    open(`${url}/entry/html/index-for-demo.html`);
+    open(`${url}/entry/index-for-demo.html`);
 };
 
 compiler.plugin('done', () => {

@@ -35,7 +35,7 @@ class IndexFetchDemoContainer extends Component {
             <div>
                 <button onClick={this.fetchData}>发起fetch请求</button>
                 {
-                    waiting && <Waiting height="400px"/>
+                    waiting && <Waiting height="400px" />
                 }
                 {
                     !waiting && <div>{ JSON.stringify(listData) }</div>

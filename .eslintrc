@@ -10,12 +10,12 @@
     ],
     "react/jsx-space-before-closing": [
       "error",
-      "never"
+      "always"
     ],
     "react/jsx-tag-spacing": [
       "error",
       {
-        "beforeSelfClosing": "never"
+        "beforeSelfClosing": "always"
       }
     ],
     "no-prototype-builtins": ["off"],
@@ -42,6 +42,8 @@
     ],
     // @see https://github.com/benmosher/eslint-plugin-import
     "import/no-extraneous-dependencies": ["off"],
+    // no dynamic require disable
+    "import/no-dynamic-require": ["off"],
     // disable this for redux connect @see https://github.com/benmosher/eslint-plugin-import/issues/544
     "import/no-named-as-default": ["off"],
     // disable this for redux connect @see https://github.com/benmosher/eslint-plugin-import/issues/544
@@ -65,7 +67,8 @@
     "jsx-a11y/mouse-events-map-to-key-events": "off",
     "jsx-a11y/href-no-hash": "off",
     "jsx-a11y/redundant-alt": "off",
-    "jsx-a11y/valid-aria-role": "off"
+    "jsx-a11y/valid-aria-role": "off",
+    "eol-last": "off"
   },
   "env": {
     "browser": true

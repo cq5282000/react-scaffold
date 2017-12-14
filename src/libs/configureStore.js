@@ -15,6 +15,7 @@ const store = createStore(combineReducers(reducer), compose(
 if (module.hot) {
     module.hot.accept('../reducers', () => {
         const nextReducer = require('../reducers').default;
+        console.log('reducer');
         store.replaceReducer(combineReducers(nextReducer));
     });
 }
