@@ -451,3 +451,15 @@ definePlugin声明一个全局的变量NODE_ENV。
 ### 修改配置选项
 
 - 没修改成功，放弃了，mark一下babel-preset-env,有问题，未解决
+
+## 脚手架更新日志 2017年12月14号
+
+### 工程实践
+
+- 工程实践后修改webpack针对不同环境的配置
+
+- 修改fetch函数
+
+- requestPath函数
+
+- eslint 配置
