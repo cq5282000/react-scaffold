@@ -58,16 +58,18 @@ const fetchOriginData = async({
             query: param,
         });
     } else if (reqMethod === requestMethod.POST) {
-        const flatData = Object.keys(param).reduce((obj, key) => {
-            const value = param[key];
-            if (typeof value === 'object') {
-                return { ...obj, [key]: JSON.stringify(value) };
-            }
-            return { ...obj, [key]: value };
-        }, {});
-        options.body = querystring.stringify(flatData);
+        reqPath = requestPath(url);
+        // const flatData = Object.keys(param).reduce((obj, key) => {
+        //     const value = param[key];
+        //     if (typeof value === 'object') {
+        //         return { ...obj, [key]: JSON.stringify(value) };
+        //     }
+        //     return { ...obj, [key]: value };
+        // }, {});
+        // options.body = querystring.stringify(flatData);
+        options.body = JSON.stringify(param);
         options.headers = {
-            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+            'Content-Type': 'application/json',
         };
     }
     const response = await fetch(reqPath, options);
