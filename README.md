@@ -463,3 +463,7 @@ definePlugin声明一个全局的变量NODE_ENV。
 - requestPath函数
 
 - eslint 配置
+
+### 2017年12月18日
+
+- 修改封装的fetch函数，解决了post环境请求下的BUG
