@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0532a02a-a8a1-4b6f-8a27-3242e6a7d537" name="Default" comment="" />
+    <list default="true" id="0532a02a-a8a1-4b6f-8a27-3242e6a7d537" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -71,8 +73,8 @@
       <file leaf-file-name="webpack.config.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/webpack.config.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-108">
-              <caret line="9" column="45" lean-forward="false" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="45" />
+            <state relative-caret-position="270">
+              <caret line="18" column="35" lean-forward="true" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -533,12 +535,12 @@
       <workItem from="1505178578037" duration="14326000" />
       <workItem from="1505205153468" duration="2000" />
       <workItem from="1505880003269" duration="396000" />
-      <workItem from="1519983446816" duration="501000" />
+      <workItem from="1519983446816" duration="1294000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87955000" />
+    <option name="totallyTimeSpent" value="88748000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -823,7 +825,7 @@
         <state relative-caret-position="75">
           <caret line="7" column="20" lean-forward="false" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
           <folding>
-            <element signature="e#43#91#0" expanded="true" />
+            <element signature="e#43#91#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -915,8 +917,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/webpack.config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-108">
-          <caret line="9" column="45" lean-forward="false" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="45" />
+        <state relative-caret-position="270">
+          <caret line="18" column="35" lean-forward="true" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
           <folding />
         </state>
       </provider>
